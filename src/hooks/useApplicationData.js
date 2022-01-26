@@ -27,7 +27,21 @@ useEffect(() => {
   });
 },[]);  
 
-
+function updateSpots(requestType) {
+  const days = [...state.days];
+  const dayIndex = days.findIndex((day) => day.name === state.day)
+  const day = days[dayIndex];
+  console.log("UpdateSpots",day);
+  if (requestType === "BookAppointment") {
+    day.spots -= 1;
+  } else {
+    console.log("Increase in Spots");
+    day.spots += 1;
+  }
+  days[dayIndex] = {...day};
+  //setState((pre) => ({...pre,days}));
+  return days;
+}
 function bookInterview(id, interview) {
   const appointment = {
     ...state.appointments[id],
@@ -37,13 +51,18 @@ function bookInterview(id, interview) {
     ...state.appointments,
     [id]: appointment
   };
-  setState({...state,appointments});
-  return axios.put(`/api/appointments/${id}`,{interview: appointment.interview}, (request,response) => {
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
+  const days = updateSpots("BookAppointment");
+  //return axios.put(`/api/appointments/${id}`,{interview: appointment.interview}, (request,response) => {
+  return axios.put(`/api/appointments/${id}`,{interview})
+    // if (process.env.TEST_ERROR) {
+    //   setTimeout(() => response.status(500).json({}), 1000);
+    //   return;
+    // }
+    .then (() => {
+    console.log("BookAppointment");
+    setState({...state,appointments,days})
   })
+  .catch ((error) => console.log(error));
   // then((res) => {
   //   console.log("Res",res);
 }
@@ -58,11 +77,12 @@ function cancelInterview(id) {
     [id]: appointment
   };
   console.log("Null",appointments);
-  
+  const days = updateSpots();
   return axios.delete(`/api/appointments/${id}`, appointment).then(() => {
-    setState({...state,appointments});
-  })
+    setState({...state,appointments,days});
+  });
 }
+return {state,setDay,bookInterview,cancelInterview};
 }
 
 
