@@ -62,9 +62,7 @@ function bookInterview(id, interview) {
     console.log("BookAppointment");
     setState({...state,appointments,days})
   })
-  .catch ((error) => console.log(error));
-  // then((res) => {
-  //   console.log("Res",res);
+  
 }
 
 function cancelInterview(id) {
