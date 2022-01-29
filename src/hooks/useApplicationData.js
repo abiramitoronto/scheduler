@@ -65,7 +65,6 @@ function cancelInterview(id) {
     ...state.appointments,
     [id]: appointment
   };
-  console.log("Null",appointments);
   const days = updateSpots();
   return axios.delete(`/api/appointments/${id}`, appointment).then(() => {
     setState({...state,appointments,days});

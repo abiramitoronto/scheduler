@@ -9,31 +9,45 @@ Login URL ==> http://localhost:8000
 
 ## Main Page
 
-!["Main Page"](https://github.com/abiramitoronto/tweetr/blob/master/docs/Desktop.png)
+!["Main Page"](https://github.com/abiramitoronto/scheduler/blob/master/docs/1_MainPage.png)
+
 
 ## Create Appointment
 
+
 !["Create Appointment"](https://github.com/abiramitoronto/scheduler/blob/master/docs/2_Create_Appointment.png)
+
 
 ## Show Appointment
 
+
 !["Show Appointment"](https://github.com/abiramitoronto/scheduler/blob/master/docs/3_Show%20Appointment.png)
+
 
 ## Edit Appointment
 
+
 !["Edit Appointment"](https://github.com/abiramitoronto/scheduler/blob/master/docs/4-Edit%20Appointment.png)
+
 
 ## Delete Appointment
 
+
 !["Delete Appointment"](https://github.com/abiramitoronto/scheduler/blob/master/docs/5_Delete%20Appointment%20.png)
+
 
 ## Saving Visual
 
+
 !["Saving Visual"](https://github.com/abiramitoronto/scheduler/blob/master/docs/6_Saving%20Visual.png)
+
 
 ## Deleting Visual
 
+
 !["Deleting Visual"](https://github.com/abiramitoronto/scheduler/blob/master/docs/7_Deleting%20Visual.png)
+
+
 
 ## Dependencies
 
@@ -43,6 +57,7 @@ Login URL ==> http://localhost:8000
    - react: ^16.14.0
    - react-dom: ^16.9.0
    - react-scripts: 3.0.0
+
 
 ## Dev Dependencies
 
@@ -60,9 +75,12 @@ Login URL ==> http://localhost:8000
     prop-types: ^15.8.1
     react-test-renderer: ^16.14.0
 
+
 ## Setup
 
+
 Install dependencies with `npm install`.
+
 
 ## Running Webpack Development Server
 
@@ -84,8 +102,10 @@ npm run storybook
 
 ## Helper Functions
 
-getAppointmentsForDay function returns array of appointment objects that are 
+
+`getAppointmentsForDay` function returns array of appointment objects that are 
 matching with the selected day.
+
 
 ```js
 export function getAppointmentsForDay(state, dayName) {
@@ -103,7 +123,8 @@ export function getAppointmentsForDay(state, dayName) {
 }
 ```
 
-getInterview function returns interview object that was selected by the front-end user
+
+`getInterview` function returns interview object that was selected by the front-end user
 
 ```js
 export function getInterview(state,interview) {
@@ -121,7 +142,8 @@ export function getInterview(state,interview) {
 
 ```
 
-getInterviewersForDay function returns array of interviewers object that are matching
+
+`getInterviewersForDay` function returns array of interviewers object that are matching
 with the selected day. 
 
 ```js
@@ -140,3 +162,34 @@ export function getInterviewersForDay(state,dayName) {
  }
 
  ```
+
+
+ ## Hooks
+
+
+`useVisualMode` hooks function helps us to transtion to different windows based on the 
+data entered/selected by the user
+
+```js
+export default function useVisualMode(initial) {
+  const [mode,setMode] = useState(initial);
+  // eslint-disable-next-line
+  const [history, setHistory] = useState([initial]);
+  function transition(newmode,replace = false) {
+    if (replace) {
+      history[history.length - 1] = newmode;
+    } else {
+      history.push(newmode);
+    }
+     return setMode(newmode);
+  }
+  function back() {
+    if (history.length > 1) {
+        history.pop();
+    }
+    return setMode(history[history.length-1]);
+  }
+  return {mode,transition,back};
+};
+
+```
