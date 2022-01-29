@@ -1,6 +1,7 @@
 # Interview Scheduler
 
-The Interview scheduler React based app that helps us to schedule an appointment with the selected interviewer. The scheduler shows the available apointment slots based on the timings for any day. Additionally it also displays day wise spots that can be booked. It helps us to Edit/Delete an appoitment.
+The Interview scheduler is React based app that helps us to schedule an appointment with the selected interviewer. The scheduler shows the available appointment slots based on the timings for any day. Additionally it also displays day wise spots that can be booked. It helps us to Edit/Delete an appointment.
+
 
 
 ## Final Product
