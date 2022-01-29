@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-
+// useApplicationData contains the core logic that interacts with API server to retrieve
+// the data from the database.
 export default function useApplicationData(){
 const [state, setState] = useState({
   day:"Monday",
