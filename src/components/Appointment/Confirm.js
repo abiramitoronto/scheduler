@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "components/Button";
-
+// Confirm Component displays the Confirm/Cancel Button 
 export default function Confirm(props) {
   console.log("confirm",props.id);
   const deleteit = () => {
@@ -14,8 +14,6 @@ return (
     <Button danger onClick={deleteit}>Confirm</Button>
   </section>
 </main>
-
-
 );
 
 

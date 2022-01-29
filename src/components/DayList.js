@@ -1,7 +1,7 @@
 import React from "react";
 import DayListItem from "./DayListItem";
 
-
+// Daylist Component renders the side bar of the Main page that lists the days.
 export default function DayList(props) {
   const dayListArr = props.days;
   const onChange = props.onChange;

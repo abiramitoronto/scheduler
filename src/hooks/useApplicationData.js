@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
@@ -10,6 +9,7 @@ const [state, setState] = useState({
   appointments:{},
   interviewers:{}
 });
+const CREATE = "CREATE";
 
 const setDay = day => setState({...state, day });
   
@@ -19,30 +19,27 @@ useEffect(() => {
     axios.get('http://localhost:8001/api/appointments'),
     axios.get('http://localhost:8001/api/interviewers')
   ]).then((all) => {
-    console.log(all[0]); 
-    console.log(all[1]); 
-    console.log(all[2]);
     const [first, second, third] = all;
     setState(prev => ({ ...prev, days : first.data, appointments : second.data, interviewers: third.data}));
   });
 },[]);  
 
-function updateSpots(requestType) {
+function updateSpots(requestType,mode) {
   const days = [...state.days];
   const dayIndex = days.findIndex((day) => day.name === state.day)
   const day = days[dayIndex];
-  console.log("UpdateSpots",day);
   if (requestType === "BookAppointment") {
-    day.spots -= 1;
+    if (mode === CREATE) {
+      day.spots -= 1;
+    }
   } else {
-    console.log("Increase in Spots");
     day.spots += 1;
   }
   days[dayIndex] = {...day};
-  //setState((pre) => ({...pre,days}));
   return days;
 }
-function bookInterview(id, interview) {
+
+function bookInterview(id, interview,mode) {
   const appointment = {
     ...state.appointments[id],
     interview: { ...interview }
@@ -51,18 +48,11 @@ function bookInterview(id, interview) {
     ...state.appointments,
     [id]: appointment
   };
-  const days = updateSpots("BookAppointment");
-  //return axios.put(`/api/appointments/${id}`,{interview: appointment.interview}, (request,response) => {
+  const days = updateSpots("BookAppointment",mode);
   return axios.put(`/api/appointments/${id}`,{interview})
-    // if (process.env.TEST_ERROR) {
-    //   setTimeout(() => response.status(500).json({}), 1000);
-    //   return;
-    // }
     .then (() => {
-    console.log("BookAppointment");
     setState({...state,appointments,days})
   })
-  
 }
 
 function cancelInterview(id) {
@@ -81,6 +71,6 @@ function cancelInterview(id) {
   });
 }
 return {state,setDay,bookInterview,cancelInterview};
-}
+};
 
 

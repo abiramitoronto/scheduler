@@ -1,38 +1,35 @@
 import React from "react";
 import { useState } from "react";
-
+// Show Component display the Appointment details along with the interviewer
 export default function Show(props) {
-  const [id, setId] = useState(props.id || "");
+  // eslint-disable-next-line
   const [name, setName] = useState(props.interviewer.name || "");
   
-  console.log("ShowProp",props);
   return (
-<main className="appointment__card appointment__card--show">
-  <section className="appointment__card-left">
-    <h2 className="text--regular">{props.student}</h2>
-    <section className="interviewer">
-      <h4 className="text--light">Interviewer</h4>
-      <h3 className="text--regular">{name}</h3>
+    <main className="appointment__card appointment__card--show">
+      <section className="appointment__card-left">
+        <h2 className="text--regular">{props.student}</h2>
+        <section className="interviewer">
+          <h4 className="text--light">Interviewer</h4>
+          <h3 className="text--regular">{name}</h3>
+        </section>
+      </section>
+      <section className="appointment__card-right">
+        <section className="appointment__actions">
+          <img
+            className="appointment__actions-button"
+            src="images/edit.png"
+            alt="Edit"
+            onClick ={props.onEdit}
+          />
+          <img
+            className="appointment__actions-button"
+            src="images/trash.png"
+            alt="Delete"
+            onClick ={props.onDelete}
+          />
+        </section>
     </section>
-  </section>
-  <section className="appointment__card-right">
-    <section className="appointment__actions">
-      <img
-        className="appointment__actions-button"
-        src="images/edit.png"
-        alt="Edit"
-        onClick ={props.onEdit}
-      />
-      <img
-        className="appointment__actions-button"
-        src="images/trash.png"
-        alt="Delete"
-        onClick ={props.onDelete}
-      />
-    </section>
-  </section>
-</main>
-
-
-  );
+  </main>
+);
 }

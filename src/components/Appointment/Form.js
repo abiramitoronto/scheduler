@@ -2,8 +2,7 @@ import React from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 import { useState } from "react";
-import useVisualMode from "hooks/useVisualMode";
-
+// Form component displays the Form for booking appointment
 export default function Form(props) {
   console.log("EDIT",props.student);
   const [student, setStudent] = useState(props.student || "");
@@ -20,6 +19,7 @@ export default function Form(props) {
   const save = () => {
     props.onSave(student,interviewer)
   }
+  // eslint-disable-next-line
    function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
@@ -56,8 +56,5 @@ export default function Form(props) {
       </section>
     </section>
   </main>
-
-
-
   );
 }

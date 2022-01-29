@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import "components/DayListItem.scss";
+// DaylistItem component renders the Day name along with available spots for booking appointment
 export default function DayListItem(props) {
   const dayClass = classNames("day-list__item",{"day-list__item--selected" : props.selected,
                                           "day-list__item--full" : props.spots === 0 ? true : false});
@@ -18,7 +19,6 @@ export default function DayListItem(props) {
     }
   };
   return (
-
     <li className={dayClass} onClick={() => onChange(name)}>
       <h2 className="text--regular">{name}</h2> 
       <h3 className="text--light">{formatSpots()} remaining</h3>

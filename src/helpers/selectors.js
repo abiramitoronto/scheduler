@@ -1,7 +1,6 @@
+// getAppointmentsForDay function returns array of appointment objects that are 
+// matching with the selected day.
 export function getAppointmentsForDay(state, dayName) {
-//  const filteredByDay = state.days.filter(dayOut => dayOut.name === day);
- //const filteredByApp = state.appoitments.filter(appOut => appOut.id === filteredByDay.id);
- //console.log("test",filteredByApp);
  for (const day of state.days) {
    if (day.name === dayName) {
      const appIds = day.appointments;
@@ -15,6 +14,7 @@ export function getAppointmentsForDay(state, dayName) {
  return [];
 }
 
+// getInterview function returns interview object that was selected by the front-end user
 export function getInterview(state,interview) {
 
  if (!interview) {
@@ -26,17 +26,14 @@ export function getInterview(state,interview) {
  };
 
  return interviewObj; 
- // const filterByInterviewer = state.appointmens.filter(app => app.interview.interviewer === interview.id);
- //const filteredByApp = state.appoitments.filter(appOut => appOut.id === filteredByDay.id);
- //console.log("test",filteredByApp);
-//  return filterByInterviewer;
 }
 
+// getInterviewersForDay function returns array of interviewers object that are matching
+// with the selected day. 
 export function getInterviewersForDay(state,dayName) {
   for (const day of state.days) {
     if (day.name === dayName) {
       const interviewersId = day.interviewers;
-      
       const interviewers = [];
       for (const interviewerId of interviewersId) {
         interviewers.push(state.interviewers[interviewerId]);
