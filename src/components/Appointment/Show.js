@@ -3,7 +3,7 @@ import { useState } from "react";
 // Show Component display the Appointment details along with the interviewer
 export default function Show(props) {
   // eslint-disable-next-line
-  const [name, setName] = useState(props.interviewer.name || "");
+  const [name, setName] = useState((props.interviewer && props.interviewer.name) || "");
   
   return (
     <main className="appointment__card appointment__card--show">

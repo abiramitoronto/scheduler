@@ -63,7 +63,7 @@ function cancelInterview(id) {
   };
   const appointments = {
     ...state.appointments,
-    [id]: appointment
+    [id]: appointment.id
   };
   const days = updateSpots();
   return axios.delete(`/api/appointments/${id}`, appointment).then(() => {

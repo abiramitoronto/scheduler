@@ -17,8 +17,8 @@ export function getAppointmentsForDay(state, dayName) {
 // getInterview function returns interview object that was selected by the front-end user
 export function getInterview(state,interview) {
 
- if (!interview) {
-   return null;
+ if (!interview) {  
+   return null
  }
  const interviewObj = {
    student: interview.student,

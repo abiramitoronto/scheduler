@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function Form(props) {
   console.log("EDIT",props.student);
   const [student, setStudent] = useState(props.student || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [interviewer, setInterviewer] = useState((props.interviewer && props.interviewer.id) || null);
   const [error, setError] = useState("");
   const reset = () => {
     setStudent("");
