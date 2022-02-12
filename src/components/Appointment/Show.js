@@ -5,6 +5,7 @@ export default function Show(props) {
   // eslint-disable-next-line
   const [name, setName] = useState((props.interviewer && props.interviewer.name) || "");
   
+  console.log("SHOW",name)
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

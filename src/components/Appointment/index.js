@@ -32,8 +32,6 @@ export default function Appointment(props) {
     };
     transition(SAVING);
     console.log("Print Mode",mode);
-    console.log("Props ID",props.id);
-    console.log("Interview",interview);
     props.bookInterview(props.id,interview,mode)
     .then(() => transition(SHOW))
     .catch(() => transition(ERROR_SAVE, true));
@@ -76,6 +74,7 @@ return (
     {mode === EDIT && (
       <Form
         student={props.interview.student}
+        interviewer={props.interview.interviewer}
         interviewers={props.interviewers}
         onCancel={() => back()}
         onSave={save}

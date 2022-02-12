@@ -4,7 +4,7 @@ import Button from "components/Button";
 import { useState } from "react";
 // Form component displays the Form for booking appointment
 export default function Form(props) {
-  console.log("EDIT",props.student);
+
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState((props.interviewer && props.interviewer.id) || null);
   const [error, setError] = useState("");
@@ -24,6 +24,11 @@ export default function Form(props) {
    function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
+      return;
+    }
+    console.log("ttt",interviewer)
+    if (interviewer === null) {
+      setError("Interviewer name cannot be blank");
       return;
     }
   
