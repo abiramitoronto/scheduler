@@ -49,7 +49,7 @@ return (
 
 <article className="appointment">
   <Header time={props.time}/>
-    {mode === ERROR_SAVE && <Error onClose={() => transition(SHOW)}/>}
+    {mode === ERROR_SAVE && <Error onClose={() => back()}/>}
     {mode === ERROR_DELETE && <Error onClose={() => transition(SHOW)}/>}
     {mode === SAVING && <Status message={"Saving"} />}
     {mode === DELETING && <Status message={"Deleting"} />}

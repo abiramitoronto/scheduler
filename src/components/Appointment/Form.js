@@ -22,17 +22,21 @@ export default function Form(props) {
   }
   
    function validate() {
+    console.log("calling the function first");
     if (student === "") {
       setError("Student name cannot be blank");
       return;
-    }
-    console.log("ttt",interviewer)
-    if (interviewer === null) {
-      setError("Interviewer name cannot be blank");
-      return;
-    }
-  
+    } 
+    console.log("calling the function 1");
+    
+    console.log("calling the function 2");
     props.onSave(student, interviewer);
+  }
+  function handleInput(value) {
+    if (value != "") {
+      setError("");
+    }
+    setStudent(value);
   }
   return (
     <main className="appointment__card appointment__card--create">
@@ -44,14 +48,14 @@ export default function Form(props) {
           type="text"
           placeholder="Enter Student Name"
           value={student}
-          onChange={(event) => setStudent(event.target.value)}
+          onChange={(event) => handleInput(event.target.value)}
           data-testid="student-name-input"
         />
       </form>
       <section className="appointment__validation">{error}</section>
       <InterviewerList 
         interviewers={props.interviewers}
-        value={interviewer}
+        value={1}
         onChange={setInterviewer}
       />
     </section>
